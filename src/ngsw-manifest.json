@@ -1,0 +1,15 @@
+{
+   "routing":{
+      "routes":{
+         "/": {
+            "match": true
+         },
+         "/estates": {
+            "match": "prefix"
+         }
+      }
+   },
+   "static": {
+
+   }
+}
