@@ -1,0 +1,62 @@
+{
+    "id": 1183,
+    "casetypLookup": "CASETYP:PG_LPS",
+    "estateNumber": "2167468C",
+    "courtCaseNo": "ZE 008-829",
+    "casestatLookup": "CASESTAT:E",
+    "caseWeight": 0,
+    "legalStatusLookup": null,
+    "interfaceSent": true,
+    "names": [
+        {
+            "id": 1480,
+            "nametypLookup": "NAMETYP:TRUE_NAME",
+            "firstName": "JOHN",
+            "middleName": null,
+            "lastName": "DOE",
+            "sffxLookup": null,
+            "comments": null
+        },
+        {
+            "id": 1481,
+            "nametypLookup": "NAMETYP:AKA",
+            "firstName": "JOHN",
+            "middleName": null,
+            "lastName": "DOE",
+            "sffxLookup": null,
+            "comments": null
+        }
+    ],
+    "identifiers": [
+        {
+            "id": 2872,
+            "idtypLookup": "IDTYP:MH_MIS_NO",
+            "clidNumber": "0083858",
+            "issuingAuthority": null,
+            "expirationDate": null,
+            "issueDate": null,
+            "verified": true,
+            "comments": null
+        },
+        {
+            "id": 2871,
+            "idtypLookup": "IDTYP:VA_NO",
+            "clidNumber": "563905869",
+            "issuingAuthority": null,
+            "expirationDate": null,
+            "issueDate": null,
+            "verified": true,
+            "comments": null
+        },
+        {
+            "id": 2870,
+            "idtypLookup": "IDTYP:SSN",
+            "clidNumber": "111223333",
+            "issuingAuthority": null,
+            "expirationDate": null,
+            "issueDate": null,
+            "verified": true,
+            "comments": null
+        }
+    ]
+}
