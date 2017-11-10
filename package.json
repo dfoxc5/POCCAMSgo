@@ -23,7 +23,6 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
-    "angular-in-memory-web-api": "^0.5.1",
     "cli": "^1.0.1",
     "core-js": "^2.4.1",
     "dexie": "^2.0.1",
