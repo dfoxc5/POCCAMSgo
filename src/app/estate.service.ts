@@ -45,7 +45,6 @@ export class EstateService {
       ).subscribe(pulledEstate => this.pulledEstate = pulledEstate);
       this.saveEstate(this.pulledEstate.id, this.pulledEstate.estateNumber, this.pulledEstate.courtCaseNo);
    }
-
    getEstates(): Promise<Estate[]> {
       return Promise.resolve(db.estates.toArray());
    }
@@ -64,6 +63,7 @@ export class EstateService {
       db.estates.delete(estate.id);
    }
 }
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

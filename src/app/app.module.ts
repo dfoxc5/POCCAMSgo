@@ -22,6 +22,12 @@ import { GetEstatesComponent } from './get-estates.component';
   declarations: [ AppComponent, EstateDetailComponent, EstatesComponent, MessagesComponent, GetEstatesComponent ],
   providers:    [ EstateService, MessageService ],
   bootstrap:    [ AppComponent ]
+
+@NgModule({
+  imports:        [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
+  declarations:   [ AppComponent, EstateDetailComponent, EstatesComponent ],
+  providers:      [ EstateService ],
+  bootstrap:      [ AppComponent ]
 })
 
 export class AppModule { }
