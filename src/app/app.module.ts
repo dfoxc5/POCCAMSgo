@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { EstatesComponent } from './estates.component';
 import { EstateService } from './estate.service';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports:        [ BrowserModule, FormsModule, AppRoutingModule ],
+  imports:        [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
   declarations:   [ AppComponent, EstateDetailComponent, EstatesComponent ],
   providers:      [ EstateService ],
   bootstrap:      [ AppComponent ]

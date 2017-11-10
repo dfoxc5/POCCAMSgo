@@ -1,5 +1,7 @@
+import { Name } from './name';
+
 export class Estate {
    id: number;
-   firstName: string;
-   lastName: string;
+   estateNumber: string;
+   courtCaseNo: string;
 }

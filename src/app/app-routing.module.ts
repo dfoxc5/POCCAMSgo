@@ -1,7 +1,7 @@
-import { NgModule }              from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
-import { EstatesComponent }       from './estates.component';
-import { EstateDetailComponent }   from './estate-detail.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EstatesComponent } from './estates.component';
+import { EstateDetailComponent } from './estate-detail.component';
 
 const routes: Routes = [
    { path: '', redirectTo: '/estates', pathMatch: 'full' },

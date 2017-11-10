@@ -4,7 +4,7 @@ import { EstateService } from './estate.service';
 import { Router } from '@angular/router';
 
 @Component({
-   selector: 'my-estates',
+   selector: 'app-my-estates',
    templateUrl: './estates.component.html',
    styleUrls: [ './estates.component.css' ],
 })
@@ -25,11 +25,11 @@ export class EstatesComponent implements OnInit{
    gotoDetail(): void {
       this.router.navigate(['/detail', this.selectedEstate.id]);
    }
-   addEstate(id: number, firstName: string, lastName: string): void {
-      firstName = firstName.trim();
-      lastName = lastName.trim();
-      if (!lastName) { return; }
-      this.estateService.saveEstate(id, firstName, lastName);
+   addEstate(id: number, estateNumber: string, courtCaseNo: string): void {
+      estateNumber = estateNumber.trim();
+      courtCaseNo = courtCaseNo.trim();
+      if (!estateNumber) { return; }
+      this.estateService.saveEstate(id, estateNumber, courtCaseNo);
       this.getEstates();
       this.selectedEstate = null;
    }

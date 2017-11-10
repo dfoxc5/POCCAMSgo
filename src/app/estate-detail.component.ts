@@ -7,8 +7,9 @@ import { EstateService } from './estate.service';
 import { Estate } from './estate';
 
 @Component({
-   selector: 'estate-detail',
+   selector: 'app-estate-detail',
    templateUrl: './estate-detail.component.html',
+   styleUrls: ['./estate-detail.component.css'],
 })
 
 export class EstateDetailComponent implements OnInit {

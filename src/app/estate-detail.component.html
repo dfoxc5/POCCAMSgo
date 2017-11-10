@@ -1,17 +1,17 @@
 <div *ngIf="estate">
-   <h2>{{estate.firstName}} details!</h2>
+   <h2>{{estate.estateNumber}} details!</h2>
    <div>
       <label>id: </label>{{estate.id}}
    </div>
    <div>
       <table>
          <tr>
-            <td><label>First name: </label></td>
-            <td><input [(ngModel)]="estate.firstName" placeholder="first"/></td>
+            <td><label>Estate Number: </label></td>
+            <td><input [(ngModel)]="estate.estateNumber" placeholder="number"/></td>
          </tr>
          <tr>
-            <td><label>Last Name: </label></td>
-            <td><input [(ngModel)]="estate.lastName" placeholder="last"/></td>
+            <td><label>Court Case Number: </label></td>
+            <td><input [(ngModel)]="estate.courtCaseNo" placeholder="courtcase"/></td>
          </tr>
       </table>
    </div>

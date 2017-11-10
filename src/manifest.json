@@ -1,5 +1,5 @@
 {
-    "short_name": "CAMSGO",
+    "short_name": "CAMSGOPOC",
     "name": "CAMS Go Web App",
     "icons": [
       {
@@ -8,6 +8,6 @@
         "sizes": "192x192"
       }
     ],
-    "start_url": "/estates?launcher=true",
+    "start_url": "/estates",
     "display": "standalone"
   }

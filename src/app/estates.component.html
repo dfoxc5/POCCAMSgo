@@ -2,20 +2,22 @@
 <div>
    <table>
       <tr><td><label>Estate ID:</label></td> <td><input #estateId /></td><br /></tr>
-      <tr><td><label>Estate First Name:</label></td> <td><input #estateFirstName /></td></tr>
-      <tr><td><label>Estate Last Name:</label></td> <td><input #estateLastName /></td></tr>
+      <tr><td><label>Estate Number:</label></td> <td><input #estateNumber /></td></tr>
+      <tr><td><label>Court Case Number:</label></td> <td><input #estateCourtCaseNumber /></td></tr>
    </table>
-   <button (click)="addEstate(estateId.value, estateFirstName.value, estateLastName.value); estateFirstName.value=''; estateLastName.value=''; estateId.value=''">Add</button>
+   <button (click)="addEstate(estateId.value, estateNumber.value, estateCourtCaseNumber.value); estateNumber.value=''; 
+   estateCourtCaseNumber.value=''; estateId.value=''">
+      Add
+   </button>
 </div><br />
 <ul class="estates">
    <li *ngFor="let estate of estates" (click)="onSelect(estate)" [class.selected]="estate === selectedEstate">
       <span class="badge">{{estate.id}}</span> 
-      <span>{{estate.lastName}}</span>,
-      <span>{{estate.firstName}}</span>
+      <span>{{estate.estateNumber}}</span>
       <button class="delete" (click)="delete(estate); $event.stopPropagation()">x</button>
    </li>
 </ul>
 <div *ngIf="selectedEstate">
-   <h2>{{selectedEstate.lastName | uppercase}} is my estate</h2>
+   <h2>{{selectedEstate.estateNumber | uppercase}} is my estate</h2>
    <button (click)="gotoDetail()">View Details</button>
 </div>

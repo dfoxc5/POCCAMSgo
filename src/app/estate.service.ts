@@ -12,11 +12,11 @@ export class EstateService {
       return this.getEstates()
                  .then(estates => estates.find(estate => estate.id === id));
    }
-   saveEstate(id: number, firstName: string, lastName: string): void {
-      db.estates.put({ id: Number(id), firstName: firstName, lastName: lastName });
+   saveEstate(id: number, estateNumber: string, courtCaseNo: string): void {
+      db.estates.put({ id: Number(id), estateNumber: estateNumber, courtCaseNo: courtCaseNo });
    }
    update(estate: Estate): Promise<number> {
-      return db.estates.put({ id: estate.id, firstName: estate.firstName, lastName: estate.lastName });
+      return db.estates.put({ id: estate.id, estateNumber: estate.estateNumber, courtCaseNo: estate.courtCaseNo });
    }
    delete(estate: Estate): void {
       db.estates.delete(estate.id);
