@@ -14,5 +14,4 @@ export class GetEstatesComponent{
    getEstate(estateNumber: string): void {
       this.estateService.getEstateFromHttp(estateNumber);
    }
-   
 }

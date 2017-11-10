@@ -9,25 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
 import { GetEstatesComponent } from './get-estates.component';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule,
-                  HttpClientInMemoryWebApiModule.forRoot(
-                    InMemoryDataService, { dataEncapsulation: false }
-                  ) 
-                ],
+  imports:      [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
   declarations: [ AppComponent, EstateDetailComponent, EstatesComponent, MessagesComponent, GetEstatesComponent ],
   providers:    [ EstateService, MessageService ],
   bootstrap:    [ AppComponent ]
-
-@NgModule({
-  imports:        [ BrowserModule, FormsModule, AppRoutingModule, HttpClientModule ],
-  declarations:   [ AppComponent, EstateDetailComponent, EstatesComponent ],
-  providers:      [ EstateService ],
-  bootstrap:      [ AppComponent ]
 })
 
 export class AppModule { }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Estate } from './estate';
 import { db } from './my-app-database';
-import { Observable } from 'rxjs/Rx';
-import { of } from 'rxjs/Observable/of';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
@@ -18,31 +18,27 @@ export class EstateService {
    constructor(
       private http: HttpClient,
       private messageService: MessageService) { }
-   
    private log(message: string) {
       this.messageService.add('EstateService: ' + message);
    }
 
    private handleError<T> (operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
-     
         // TODO: send the error to remote logging infrastructure
         console.error(error); // log to console instead
-     
         // TODO: better job of transforming error for user consumption
         this.log(`${operation} failed: ${error.message}`);
-     
         // Let the app keep running by returning an empty result.
         return of(result as T);
       };
     }
 
    getEstateFromHttp(estateNumber: string): void {
-      const url = '${this.estateUrl}/${estateNumber}';
-      this.http.get<Estate>(url).pipe(
+      this.pulledEstateObs = this.http.get<Estate>(this.estateUrl + estateNumber).pipe(
         tap(_ => this.log('fetched estate ${estateNumber}')),
         catchError(this.handleError<Estate>('getEstate {estateNumber}'))
-      ).subscribe(pulledEstate => this.pulledEstate = pulledEstate);
+      );
+      this.pulledEstateObs.subscribe(pulledEstate => this.pulledEstate = pulledEstate);
       this.saveEstate(this.pulledEstate.id, this.pulledEstate.estateNumber, this.pulledEstate.courtCaseNo);
    }
    getEstates(): Promise<Estate[]> {

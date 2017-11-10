@@ -5,10 +5,10 @@ import { EstateDetailComponent } from './estate-detail.component';
 import { GetEstatesComponent } from './get-estates.component';
 
 const routes: Routes = [
-   { path: '', redirectTo: '/estates', pathMatch: 'full' },
+   { path: '', component: EstatesComponent },
    { path: 'estates', component: EstatesComponent },
    { path: 'detail/:id', component: EstateDetailComponent },
-   { path: 'getEstates', component: GetEstatesComponent }
+   { path: 'getEstate', component: GetEstatesComponent }
 ];
 
 @NgModule({
