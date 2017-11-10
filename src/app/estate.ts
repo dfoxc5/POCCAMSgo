@@ -1,4 +1,5 @@
 export class Estate {
    id: number;
-   estateNumber: string;
+   firstName: string;
+   lastName: string;
 }
