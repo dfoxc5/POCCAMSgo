@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class EstatesComponent implements OnInit{
    estates: Estate[];
    selectedEstate: Estate;
+   estateToSave: Estate;
    constructor( private estateService: EstateService, private router: Router) { }
    getEstates(): void {
       this.estateService.getEstates().then(estates => this.estates = estates);
@@ -29,9 +30,13 @@ export class EstatesComponent implements OnInit{
       estateNumber = estateNumber.trim();
       courtCaseNo = courtCaseNo.trim();
       if (!estateNumber) { return; }
-      this.estateService.saveEstate(id, estateNumber, courtCaseNo);
+      this.estateToSave.id = id;
+      this.estateToSave.estateNumber = estateNumber;
+      this.estateToSave.courtCaseNo = courtCaseNo;
+      this.estateService.saveEstate(this.estateToSave);
       this.getEstates();
       this.selectedEstate = null;
+      this.estateToSave = null;
    }
    delete(estate: Estate): void {
       this.estateService.delete(estate);

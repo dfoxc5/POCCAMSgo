@@ -1,15 +1,5 @@
 <h2>My Estates</h2>
-<div>
-   <table>
-      <tr><td><label>Estate ID:</label></td> <td><input #estateId /></td><br /></tr>
-      <tr><td><label>Estate Number:</label></td> <td><input #estateNumber /></td></tr>
-      <tr><td><label>Court Case Number:</label></td> <td><input #estateCourtCaseNumber /></td></tr>
-   </table>
-   <button (click)="addEstate(estateId.value, estateNumber.value, estateCourtCaseNumber.value); estateNumber.value=''; 
-   estateCourtCaseNumber.value=''; estateId.value=''">
-      Add
-   </button>
-</div><br />
+
 <ul class="estates">
    <li *ngFor="let estate of estates" (click)="onSelect(estate)" [class.selected]="estate === selectedEstate">
       <span class="badge">{{estate.id}}</span> 

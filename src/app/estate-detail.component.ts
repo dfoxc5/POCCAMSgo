@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
@@ -14,6 +15,7 @@ import { Estate } from './estate';
 
 export class EstateDetailComponent implements OnInit {
    estate: Estate;
+   savedEstate: Estate;
    constructor(
       private estateService: EstateService,
       private route: ActivatedRoute,
@@ -29,5 +31,12 @@ export class EstateDetailComponent implements OnInit {
    }
    save(): void {
       this.estateService.update(this.estate).then(() => this.goBack());
+   }
+   post(): void {
+      alert(this.estate.estateNumber);
+      this.estateService.postEstateToHttp(this.estate);
+      alert(this.estate.courtCaseNo);
+      this.estateService.update(this.estate);
+      alert('It worked');
    }
 }
