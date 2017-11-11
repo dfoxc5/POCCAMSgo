@@ -4,7 +4,7 @@ import { db } from './my-app-database';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 const httpOptions = {
    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,7 +13,7 @@ const httpOptions = {
 @Injectable()
 export class EstateService {
 
-   private estateUrl = 'http://jedc-lt:9080/camsgo-0.0.1-SNAPSHOT/rest/cases/';
+   private estateUrl = 'http://camsgosvr1:8080/camsgo/rest/cases/';
    private pulledEstateObs: Observable<Estate>;
    private pulledEstate: Estate;
 
@@ -29,14 +29,25 @@ export class EstateService {
     }
 
    getEstateFromHttp(estateNumber: string): void {
-      this.pulledEstateObs = this.http.get<Estate>(this.estateUrl + estateNumber).pipe(),
-        catchError(this.handleError<Estate>('getEstate {estateNumber}'));
-      this.pulledEstateObs.subscribe(pulledEstate => this.pulledEstate = pulledEstate);
+      this.http.get<Estate>(this.estateUrl + estateNumber).subscribe(
+        pulledEstate => {this.pulledEstate = pulledEstate},
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log("Client-side Error occured");
+          } else {
+            console.log("Server-side Error occured");
+          }
+        }
+      );
       this.saveEstate(this.pulledEstate);
    }
 
    postEstateToHttp(estate: Estate): void {
-      this.http.post(this.estateUrl + 'update', estate, httpOptions);
+      console.log(estate);
+      this.http.post(this.estateUrl + 'update', estate, httpOptions).subscribe(
+        res => {console.log(res);},
+        err => {console.log("Error occured: " + err.error.message + err.status);}
+      );
    }
 
    getEstates(): Promise<Estate[]> {

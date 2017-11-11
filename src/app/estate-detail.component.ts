@@ -33,10 +33,7 @@ export class EstateDetailComponent implements OnInit {
       this.estateService.update(this.estate).then(() => this.goBack());
    }
    post(): void {
-      alert(this.estate.estateNumber);
       this.estateService.postEstateToHttp(this.estate);
-      alert(this.estate.courtCaseNo);
       this.estateService.update(this.estate);
-      alert('It worked');
    }
 }
