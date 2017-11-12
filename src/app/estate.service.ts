@@ -44,10 +44,7 @@ export class EstateService {
 
    postEstateToHttp(estate: Estate): void {
       console.log(estate);
-      this.http.post(this.estateUrl + 'update', estate, httpOptions).subscribe(
-        res => {console.log(res);},
-        err => {console.log("Error occured: " + err.error.message + err.status);}
-      );
+      this.http.post(this.estateUrl + 'update', estate, httpOptions);
    }
 
    getEstates(): Promise<Estate[]> {
@@ -60,19 +57,29 @@ export class EstateService {
    saveEstate(estate: Estate): void {
       db.estates.put({
          id: Number(estate.id),
+         casetypeLookup: estate.casetypeLookup,
          estateNumber: estate.estateNumber,
          courtCaseNo: estate.courtCaseNo,
+         casestatLookup: estate.casestatLookup,
+         caseWeight: estate.caseWeight,
+         legalStatusLookup: estate.legalStatusLookup,
+         interfaceSent: estate.interfaceSent,
          names: estate.names,
          identifiers: estate.identifiers
       });
    }
    update(estate: Estate): Promise<number> {
       return db.estates.put({
-         id: estate.id,
-         estateNumber: estate.estateNumber,
-         courtCaseNo: estate.courtCaseNo,
-         names: estate.names,
-         identifiers: estate.identifiers
+        id: Number(estate.id),
+        casetypeLookup: estate.casetypeLookup,
+        estateNumber: estate.estateNumber,
+        courtCaseNo: estate.courtCaseNo,
+        casestatLookup: estate.casestatLookup,
+        caseWeight: estate.caseWeight,
+        legalStatusLookup: estate.legalStatusLookup,
+        interfaceSent: estate.interfaceSent,
+        names: estate.names,
+        identifiers: estate.identifiers
       });
    }
    delete(estate: Estate): void {

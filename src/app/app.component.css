@@ -2,6 +2,9 @@ h1 {
    font-size: 1.2em;
    color: #999;
    margin-bottom: 0;
+   max-width: 1000px;
+   width: 90%;
+   background-image: url("../assets/masthead.gif");
  }
  h2 {
    font-size: 2em;
@@ -26,3 +29,11 @@ h1 {
  nav a.active {
    color: #039be5;
  }
+ .Whole-wrapper {
+  margin: auto;
+  max-width: 1000px;
+  width: 90%;
+  border: 1px solid black;
+  margin-top: 20px;
+  padding: 10px;
+}

@@ -1,5 +1,5 @@
 <div *ngIf="estate">
-   <h2>{{estate.estateNumber}} details!</h2>
+   <h2>{{estate.estateNumber}} details</h2>
    <div>
       <label>id: </label>{{estate.id}}
    </div>
@@ -25,7 +25,7 @@
          </div>
          <div *ngFor="let id of estate.identifiers">
             <tr>
-               <td><label>ID ID:</label></td>
+               <td><label>ID:</label></td>
                <td><input [(ngModel)]="id.id" placeholder="id" /></td>
             </tr>
             <tr>

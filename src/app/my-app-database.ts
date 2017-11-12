@@ -7,7 +7,7 @@ export class MyAppDatabase extends Dexie {
    constructor () {
       super('MyAppDatabase');
       this.version(1).stores({
-         estates: 'id, &estateNumber, courtCaseNo, *names, *identifiers',
+         estates: 'id, casetypLookup, &estateNumber, courtCaseNo, casestatLookup, caseWeight, legalStatusLookup, interfaceSent, *names, *identifiers',
       });
       this.estates.mapToClass(Estate);
    }

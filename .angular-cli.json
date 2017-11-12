@@ -11,7 +11,8 @@
         "assets",
         "favicon.ico",
         "manifest.json",
-        "launcher-icon-4x.png"
+        "launcher-icon-4x.png",
+        "masthead.gif"
       ],
       "index": "index.html",
       "main": "main.ts",

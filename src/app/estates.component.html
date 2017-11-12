@@ -1,13 +1,16 @@
-<h2>My Estates</h2>
+<div class="Whole-wrapper">
 
-<ul class="estates">
-   <li *ngFor="let estate of estates" (click)="onSelect(estate)" [class.selected]="estate === selectedEstate">
-      <span class="badge">{{estate.id}}</span> 
-      <span>{{estate.estateNumber}}</span>
-      <button class="delete" (click)="delete(estate); $event.stopPropagation()">x</button>
-   </li>
-</ul>
-<div *ngIf="selectedEstate">
-   <h2>{{selectedEstate.estateNumber | uppercase}} is my estate</h2>
-   <button (click)="gotoDetail()">View Details</button>
+   <h2>My Estates</h2>
+
+   <ul class="estates">
+      <li *ngFor="let estate of estates" (click)="onSelect(estate)" [class.selected]="estate === selectedEstate">
+         <span class="badge">{{estate.id}}</span> 
+         <span>{{estate.estateNumber}}</span>
+         <button class="delete" (click)="delete(estate); $event.stopPropagation()">x</button>
+      </li>
+   </ul>
+   <div *ngIf="selectedEstate">
+      <h2>{{selectedEstate.estateNumber | uppercase}} is my estate</h2>
+      <button (click)="gotoDetail()">View Details</button>
+   </div>
 </div>
