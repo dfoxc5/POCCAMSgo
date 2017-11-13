@@ -30,12 +30,12 @@ export class EstateService {
 
    getEstateFromHttp(estateNumber: string): void {
       this.http.get<Estate>(this.estateUrl + estateNumber).subscribe(
-        pulledEstate => {this.pulledEstate = pulledEstate},
+        pulledEstate => {this.pulledEstate = pulledEstate;},
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
-            console.log("Client-side Error occured");
+            console.log('Client-side Error occured');
           } else {
-            console.log("Server-side Error occured");
+            console.log('Server-side Error occured');
           }
         }
       );
@@ -44,7 +44,10 @@ export class EstateService {
 
    postEstateToHttp(estate: Estate): void {
       console.log(estate);
-      this.http.post(this.estateUrl + 'update', estate, httpOptions);
+      this.http.post(this.estateUrl + 'update', estate, httpOptions).subscribe(
+         res => { console.log(res); },
+         err => { console.log('Error occured: ' + err.error.message + err.status); }
+         );
    }
 
    getEstates(): Promise<Estate[]> {
