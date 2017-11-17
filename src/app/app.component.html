@@ -1,12 +1,78 @@
-<div style="text-align:center">
+<!-- <mat-toolbar layout="row" class="md-toolbar-tools">
   <h1>
     {{title}}
   </h1>
-</div>
-<div class="Whole-wrapper">
-  <nav>
-    <a routerLink="/estates">Estates</a>
-    <a routerLink="/getEstate">Download</a>
+</mat-toolbar>
+
+<mat-drawer>
+   <mat-drawer-content mode="side" opened="true">Drawer content</mat-drawer-content>
+   <div class="my-content">Main content</div>
+</mat-drawer> -->
+
+<!-- <div>
+  <nav class="row">
+    <a routerLink="/estates" class="col-sm-4">Estates</a>
+    <a routerLink="/getEstate" class="col-sm-4">Download</a>
   </nav>
   <router-outlet></router-outlet>
+</div> -->
+
+<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
+   <div class="container-fluid">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+         </button>
+         <a class="navbar-brand active" routerLink="/" (click)="onSelect(nav1.id)">{{title}}</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+         <ul class="nav navbar-nav">
+            <li [class.active]="'1' === selectedId"><a id="1" routerLink="/estates" (click)="onSelect(nav1.id)" #nav1>Estates</a></li>
+            <li [class.active]="'2' === selectedId"><a id="2" routerLink="/getEstate" (click)="onSelect(nav2.id)" #nav2>Download</a></li>
+         </ul>
+      </div>
+   </div>
+</nav><br /> -->
+<div class="w3main">
+   <div class="w3-col w3-container w3-hide-large camsgo-1-color" style="width:40px; padding-left:5px" onclick="w3_open()">
+      <h1>&#9776;</h1>
+   </div>
+   <div class="w3-container w3-rest camsgo-1-color" style="padding-left:20px;">
+      <h1>{{title}}</h1>
+   </div>
 </div>
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-dark-grey" style="width:200px;" id="mySidebar">
+   <button class="w3-bar-item w3-button w3-hide-large"
+   onclick="w3_close()">Close &times;</button>
+   <a class="w3-bar-item w3-button" href="/estates" #nav1>Estates</a>
+   <a class="w3-bar-item w3-button" href="/getEstate" #nav2>Download</a>
+</div>
+<div class="w3-main" style="margin-left:200px">
+   <router-outlet></router-outlet>
+</div>
+
+
+
+<!-- <mat-sidenav-container class="example-sidenav-fab-container">
+   <mat-sidenav #sidenav mode="side" opened="true">
+      <div class="example-scrolling-content">
+         Side Bar
+      </div>
+   </mat-sidenav>
+   <button mat-mini-fab class="example-fab" (click)="sidenav.toggle()">
+      <mat-icon>add</mat-icon>
+   </button>
+   <div class="example-scrolling-content">
+      Lorem ipsum dolor sit amet, pede a libero aenean phasellus, lectus metus sint ut risus, fusce
+      vel in pellentesque. Nisl rutrum etiam morbi consectetuer tempor magna, aenean nullam nunc id,
+      neque vivamus interdum sociis nulla scelerisque sem, dolor id wisi turpis magna aliquam magna.
+      Risus accumsan hac eget etiam donec sed, senectus erat mattis quam, tempor vel urna occaecat
+      cras, metus urna augue nec at. Et morbi amet dui praesent, nec eu at, ligula ipsum dui
+      sollicitudin, quis nisl massa viverra ligula, mauris fermentum orci arcu enim fringilla. Arcu
+      erat nulla in aenean lacinia ullamcorper, urna ante nam et sagittis, tristique vehicula nibh
+      ipsum vivamus, proin proin. Porta commodo nibh quis libero amet. Taciti dui, sapien
+      consectetuer.
+   </div>
+</mat-sidenav-container> -->

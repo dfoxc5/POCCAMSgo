@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Estate } from './estate';
+import { Estate } from './data-model/estate';
 import { EstateService } from './estate.service';
 import { Router } from '@angular/router';
 

@@ -2,22 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>POC</title>
+  <title>Angular4</title>
   <base href="/">
-  <link rel="manifest" href="/manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+      }
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+      }
+   </script>
+   <script>
+      function openTabs() {
+         var x = document.getElementById("tabMenu2");
+         if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+         } else { 
+            x.className = x.className.replace(" w3-show", "");
+         }
+      }
+   </script>
 </head>
 <body>
   <app-root></app-root>
-  <script>
-      if ('serviceWorker' in navigator) {
-         navigator.serviceWorker.register('/service-worker.js', {scope: '/'}).then(function(registration) {
-            console.log('Service Worker registered');
-         }).catch(function(err) {
-            console.log('Service Worker registration failed: ', err);
-         });   
-      }     
-  </script>
 </body>
 </html>

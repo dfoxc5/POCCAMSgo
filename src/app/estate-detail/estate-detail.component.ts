@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { EstateService } from './estate.service';
-import { Estate } from './estate';
+import { EstateService } from '../estate.service';
+import { Estate } from '../data-model/estate';
 
 @Component({
    selector: 'app-estate-detail',
@@ -16,6 +16,7 @@ import { Estate } from './estate';
 export class EstateDetailComponent implements OnInit {
    estate: Estate;
    savedEstate: Estate;
+   selectedTab = '1';
    constructor(
       private estateService: EstateService,
       private route: ActivatedRoute,
@@ -35,5 +36,8 @@ export class EstateDetailComponent implements OnInit {
    post(): void {
       this.estateService.postEstateToHttp(this.estate);
       this.estateService.update(this.estate);
+   }
+   selectTab(id: string) {
+      this.selectedTab = id;
    }
 }

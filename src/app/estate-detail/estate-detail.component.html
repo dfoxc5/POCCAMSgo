@@ -1,0 +1,30 @@
+<div *ngIf="estate">
+   <div class="w3-container w3-center camsgo-2-color w3-border-0">
+      <h3>Estate: {{estate.estateNumber}}</h3>
+   </div>
+   <div class="w3-bar camsgo-4-color">
+      <a routerLink="names" class="w3-bar-item camsgo-4-color w3-button" [class.w3-grey]="selectedTab === '1'" (click)="selectTab('1')">
+         Names
+      </a>
+      <a routerLink="ids" class="w3-bar-item w3-hide-small camsgo-4-color w3-button" [class.w3-grey]="selectedTab === '2'" (click)="selectTab('2')">
+         Identifiers
+      </a>
+      <a routerLink="casenotes" class="w3-bar-item w3-hide-small camsgo-4-color w3-button" [class.w3-grey]="selectedTab === '3'" (click)="selectTab('3')">
+         Case Notes
+      </a>
+      <a class="w3-bar-item w3-right w3-hide-large w3-hide-medium" onclick="openTabs()">&#9776;</a>
+   </div>
+   <div id="tabMenu2" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium camsgo-4-color">
+      <a routerLink="ids" class="w3-bar-item w3-button camsgo-4-color" onclick="openTabs()"  [class.w3-grey]="selectedTab === '2'" (click)="selectTab('2')">
+         Identifiers
+      </a>
+      <a routerLink="casenotes" class="w3-bar-item w3-button camsgo-4-color" onclick="openTabs()" [class.w3-grey]="selectedTab === '3'" (click)="selectTab('3')">
+         Case Notes
+      </a>
+   </div>
+   <router-outlet></router-outlet>
+   <button (click)="goBack()">Back</button>
+   <button (click)="save()">Save</button>
+   <button (click)="post()">Post</button>
+</div>
+

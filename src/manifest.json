@@ -8,6 +8,6 @@
         "sizes": "192x192"
       }
     ],
-    "start_url": "/estates",
+    "start_url": "/?launcher=true",
     "display": "standalone"
   }

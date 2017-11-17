@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Estate } from './estate';
+import { Estate } from './data-model/estate';
 import { db } from './my-app-database';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -26,7 +26,7 @@ export class EstateService {
         // Let the app keep running by returning an empty result.
         return of(result as T);
       };
-    }
+   }
 
    getEstateFromHttp(estateNumber: string): void {
       this.http.get<Estate>(this.estateUrl + estateNumber).subscribe(

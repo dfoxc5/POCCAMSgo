@@ -1,0 +1,32 @@
+<div *ngIf="estate" class="w3-container w3-margin-bottom">
+   <h4>Identifiers</h4>
+   <div class="w3-responsive">
+      <table class="w3-table-all w3-hoverable">
+         <tr>
+            <th>Type</th>
+            <th>ID No.</th>
+            <th class="w3-hide-small">Issuing Authority</th>
+            <th class="w3-hide-small">Verified</th>
+         </tr>
+         <tr *ngFor="let id of estate.identifiers" onclick="document.getElementById('id01').style.display='block'">
+            <td>{{ id.idtypLookup }}</td>
+            <td>{{ id.clidNumber }}</td>
+            <td class="w3-hide-small">{{ id.issuingAuthority }}</td>
+            <td class="w3-hide-small">{{ id.verified }}</td>
+         </tr>
+      </table>
+   </div>
+   <div id="id01" class="w3-modal">
+      <div class="w3-modal-content w3-animate-top w3-card-4">
+         <header class="w3-container camsgo-2-color"> 
+            <span onclick="document.getElementById('id01').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Identifier Details</h2>
+         </header>
+         <div class="w3-container">
+            <p>Some text..</p>
+            <p>Some text..</p>
+         </div>
+      </div>
+   </div>
+</div>
