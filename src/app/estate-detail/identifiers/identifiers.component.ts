@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { EstateService } from '../../estate.service';
 import { Estate } from '../../data-model/estate';
+import { Identifier } from '../../data-model/identifiers';
 
 @Component({
    selector: 'app-estate-detail-ids',
@@ -15,21 +16,26 @@ import { Estate } from '../../data-model/estate';
 export class IdentifiersComponent implements OnInit {
    estate: Estate;
    estateID: string;
+   selectedId: Identifier;
+   date: Date;
    constructor(
       private estateService: EstateService,
-      private router: Router,
       private route: ActivatedRoute,
-      private location: Location
+      private location: Location,
+      private datepipe: DatePipe,
    ) { }
    ngOnInit(): void {
-      // this.estate = this.router.routerState.root.parent(this.route)
-      // .params.subscribe(params => {
-      //   this.estateService.getEstate(+params['id']);
-      // });
       this.estateID = this.route.parent.snapshot.paramMap.get('id');
       this.estateService.getEstate(+this.estateID).then(estate => this.estate = estate);
-      // this.route.paramMap
-      //    .switchMap((params: ParamMap) => this.estateService.getEstate(+params.get('id')))
-      //    .subscribe(estate => this.estate = estate);
+   }
+
+   getID(id: Identifier) {
+      this.selectedId = id;
+   }
+
+   getDate(oldDate: string): string {
+      this.date = new Date(oldDate);
+      let newDate = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+      return newDate;
    }
 }

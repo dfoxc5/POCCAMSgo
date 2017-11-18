@@ -23,8 +23,10 @@
       </a>
    </div>
    <router-outlet></router-outlet>
-   <button (click)="goBack()">Back</button>
-   <button (click)="save()">Save</button>
-   <button (click)="post()">Post</button>
+   <div class="w3-container w3-padding">
+      <button (click)="goBack()">Back</button>
+      <button class="w3-right" (click)="save()">Save</button>
+      <button class="w3-right" (click)="post()" style="margin-right: 5px;" disabled>Post</button>
+   </div>
 </div>
 

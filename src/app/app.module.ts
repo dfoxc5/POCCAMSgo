@@ -11,6 +11,7 @@ import { GetEstatesComponent } from './get-estates.component';
 import { IdentifiersComponent } from './estate-detail/identifiers/identifiers.component';
 import { NamesComponent } from './estate-detail/names/names.component';
 import { CasenotesComponent } from './estate-detail/casenotes/casenotes.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
    imports: [
@@ -29,7 +30,8 @@ import { CasenotesComponent } from './estate-detail/casenotes/casenotes.componen
       CasenotesComponent
    ],
    providers: [
-      EstateService
+      EstateService,
+      DatePipe
    ],
    bootstrap: [
       AppComponent
