@@ -1,5 +1,5 @@
 #!/bin/bash
-#start by typing ./start.sh &
+#start by typing ./start.sh
 #shutdown with ctrl + c
 
 ng build -prod

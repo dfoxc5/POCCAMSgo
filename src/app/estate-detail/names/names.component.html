@@ -1,1 +1,35 @@
-<h4>Names</h4>
+<div *ngIf="estate" class="w3-container w3-margin-bottom">
+  <h4>Names</h4>
+  <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+      <tr>
+        <th>Name</th>
+        <th class="w3-hide-small">Suffix</th>
+        <th class="w3-hide-small">Type</th>
+      </tr>
+      <tr *ngFor="let name of estate.names" onclick="document.getElementById('nameModal').style.display='block'"
+          (mousedown)="setupModal(name)">
+        <td>{{ name.lastName }}, {{ name.middleName }} {{ name.firstName }}</td>
+        <td class="w3-hide-small">{{ name.sffxLookup }}</td>
+        <td class="w3-hide-small">{{ name.nametypLookup }}</td>
+      </tr>
+    </table>
+  </div>
+  <div id="nameModal" class="w3-modal" *ngIf="selectedName">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container camsgo-2-color">
+            <span onclick="document.getElementById('nameModal').style.display='none'"
+                  class="w3-button w3-display-topright">&times;</span>
+        <h2>Name Details</h2>
+      </header>
+      <div class="w3-container">
+        <p>Type: </p>
+        <p>Last Name: </p>
+        <p>Middle Name: </p>
+        <p>First Name: </p>
+        <p>Suffix: </p>
+        <p>Comments: </p>
+      </div>
+    </div>
+  </div>
+</div>
