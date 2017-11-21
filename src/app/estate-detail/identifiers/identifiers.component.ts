@@ -7,6 +7,7 @@ import 'rxjs/add/operator/switchMap';
 import { EstateService } from '../../estate.service';
 import { Estate } from '../../data-model/estate';
 import { Identifier } from '../../data-model/identifiers';
+import { Lookups } from '../../data-model/lookups';
 
 @Component({
    selector: 'app-estate-detail-ids',
@@ -18,6 +19,7 @@ export class IdentifiersComponent implements OnInit {
    estateID: string;
    selectedId: Identifier;
    date: Date;
+   idTypes: Lookups[];
    constructor(
       private estateService: EstateService,
       private route: ActivatedRoute,
@@ -25,17 +27,39 @@ export class IdentifiersComponent implements OnInit {
       private datepipe: DatePipe,
    ) { }
    ngOnInit(): void {
-      this.estateID = this.route.parent.snapshot.paramMap.get('id');
-      this.estateService.getEstate(+this.estateID).then(estate => this.estate = estate);
+      // this.estateID = this.route.parent.snapshot.paramMap.get('id');
+      this.estate = this.estateService.getSession();
+      // this.estateService.getEstate(+this.estateID).then(estate => this.estate = estate);
+      this.estateService.getLookups('IDTYP').then(idTypes => this.idTypes = idTypes);
    }
 
    getID(id: Identifier) {
-      this.selectedId = id;
+      this.selectedId = JSON.parse(JSON.stringify(id));
    }
 
    getDate(oldDate: string): string {
       this.date = new Date(oldDate);
-      let newDate = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+      const newDate = this.datepipe.transform(this.date, 'yyyy-MM-dd');
       return newDate;
    }
+
+   getDescription(appCode: string): string {
+      if (this.idTypes) {
+         for (const code of this.idTypes) {
+            if (code.appCode === appCode) {
+               return code.description;
+            }
+         }
+      }
+   }
+   saveID(IDtoSave) {
+      const index = this.estate.identifiers.findIndex(identifier => identifier.id === this.selectedId.id);
+      this.estate.identifiers[index] = IDtoSave;
+      this.estateService.update(this.estate);
+   }
+
+   findIndexToUpdate(IDtoSave) {
+      return IDtoSave.id === this;
+   }
+
 }

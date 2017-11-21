@@ -4,7 +4,7 @@
 <div class="w3-container w3-padding-24">
    <label>Estate Number:</label>
    <input #estateNumber class="w3-input w3-border" placeholder="Estate" /> <br />
-   <button (click)="addEstate(estateNumber.value)">Add Estate</button>
+   <button (click)="addEstate(estateNumber.value); estateNumber.value=''">Add Estate</button>
 </div>
 
 <ul class="w3-ul">
@@ -14,5 +14,5 @@
          {{estate}}
          <button class="w3-button w3-display-right" (click)="removeEstate(estate); $event.stopPropagation()">&times;</button>
       </li>
-      <button (click)="getEstates()">Download Estates</button>
+      <button (click)="getEstates(); estates=[]">Download Estates</button>
    </ul>

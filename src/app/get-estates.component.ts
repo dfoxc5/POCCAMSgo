@@ -25,7 +25,7 @@ export class GetEstatesComponent{
       for (let estate of this.estates) {
          this.estateService.getEstateFromHttp(estate);
       }
-
+      this.estateService.getLookupsFromHttp();
    }
 
    removeEstate(estateNumber: string): void {
