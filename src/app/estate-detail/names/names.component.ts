@@ -19,19 +19,40 @@ export class NamesComponent implements OnInit {
   estateID: string;
   selectedName: Name;
   nameTypes: Lookups[];
+  sffxs: Lookups[];
+
   constructor(private estateService: EstateService,
               private router: Router,
               private route: ActivatedRoute,
               private location: Location) {
   }
 
-  setupModal(name: Name){
+  setupModal(name: Name) {
     this.selectedName = name;
   }
 
   ngOnInit(): void {
-    this.estateID = this.route.parent.snapshot.paramMap.get('id');
-    this.estateService.getEstate(+this.estateID).then(estate => this.estate = estate);
+    this.estate = this.estateService.getSession();
     this.estateService.getLookups('NAMETYP').then(nameTypes => this.nameTypes = nameTypes);
+    this.estateService.getLookups('SFFXTYP').then(sffxs => this.sffxs = sffxs);
+  }
+
+  getNameTypeDescription(appCode: string): string {
+    if (this.nameTypes) {
+      for (const code of this.nameTypes) {
+        if (code.appCode === appCode) {
+          return code.description;
+        }
+      }
+    }
+  }
+  getSffxDescription(appCode: string): string {
+    if (this.nameTypes) {
+      for (const code of this.sffxs) {
+        if (code.appCode === appCode) {
+          return code.description;
+        }
+      }
+    }
   }
 }
