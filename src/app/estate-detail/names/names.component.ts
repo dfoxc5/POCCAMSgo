@@ -34,7 +34,7 @@ export class NamesComponent implements OnInit {
   ngOnInit(): void {
     this.estate = this.estateService.getSession();
     this.estateService.getLookups('NAMETYP').then(nameTypes => this.nameTypes = nameTypes);
-    this.estateService.getLookups('SFFXTYP').then(sffxs => this.sffxs = sffxs);
+    this.estateService.getLookups('SFFX').then(sffxs => this.sffxs = sffxs);
   }
 
   getNameTypeDescription(appCode: string): string {
