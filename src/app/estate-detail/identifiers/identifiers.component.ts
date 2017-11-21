@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { EstateService } from '../../estate.service';
 import { Estate } from '../../data-model/estate';
+import { Identifier } from '../../data-model/identifiers';
+import { Lookups } from '../../data-model/lookups';
 
 @Component({
    selector: 'app-estate-detail-ids',
@@ -15,21 +17,49 @@ import { Estate } from '../../data-model/estate';
 export class IdentifiersComponent implements OnInit {
    estate: Estate;
    estateID: string;
+   selectedId: Identifier;
+   date: Date;
+   idTypes: Lookups[];
    constructor(
       private estateService: EstateService,
-      private router: Router,
       private route: ActivatedRoute,
-      private location: Location
+      private location: Location,
+      private datepipe: DatePipe,
    ) { }
    ngOnInit(): void {
-      // this.estate = this.router.routerState.root.parent(this.route)
-      // .params.subscribe(params => {
-      //   this.estateService.getEstate(+params['id']);
-      // });
-      this.estateID = this.route.parent.snapshot.paramMap.get('id');
-      this.estateService.getEstate(+this.estateID).then(estate => this.estate = estate);
-      // this.route.paramMap
-      //    .switchMap((params: ParamMap) => this.estateService.getEstate(+params.get('id')))
-      //    .subscribe(estate => this.estate = estate);
+      // this.estateID = this.route.parent.snapshot.paramMap.get('id');
+      this.estate = this.estateService.getSession();
+      // this.estateService.getEstate(+this.estateID).then(estate => this.estate = estate);
+      this.estateService.getLookups('IDTYP').then(idTypes => this.idTypes = idTypes);
    }
+
+   getID(id: Identifier) {
+      this.selectedId = JSON.parse(JSON.stringify(id));
+   }
+
+   getDate(oldDate: string): string {
+      this.date = new Date(oldDate);
+      const newDate = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+      return newDate;
+   }
+
+   getDescription(appCode: string): string {
+      if (this.idTypes) {
+         for (const code of this.idTypes) {
+            if (code.appCode === appCode) {
+               return code.description;
+            }
+         }
+      }
+   }
+   saveID(IDtoSave) {
+      const index = this.estate.identifiers.findIndex(identifier => identifier.id === this.selectedId.id);
+      this.estate.identifiers[index] = IDtoSave;
+      this.estateService.update(this.estate);
+   }
+
+   findIndexToUpdate(IDtoSave) {
+      return IDtoSave.id === this;
+   }
+
 }

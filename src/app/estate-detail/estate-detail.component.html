@@ -23,8 +23,75 @@
       </a>
    </div>
    <router-outlet></router-outlet>
-   <button (click)="goBack()">Back</button>
-   <button (click)="save()">Save</button>
-   <button (click)="post()">Post</button>
+   <div class="w3-container w3-padding">
+      <button routerLink="">Back</button>
+      <button class="w3-right" onclick="document.getElementById('modalNewId').style.display='block'">Add</button>
+      <!-- <button class="w3-right" (click)="post()" style="margin-right: 5px;" disabled>Post</button> -->
+   </div>
+   <div id="modalNewId" class="w3-modal">
+      <div class="w3-modal-content w3-animate-zoom w3-card-4">
+         <header class="w3-container camsgo-2-color"> 
+            <span onclick="document.getElementById('modalNewId').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <h2>Identifier Details</h2>
+         </header>
+         <div class="w3-container w3-padding-16">
+            <div class="w3-row-padding">
+               <div class="w3-col m6 s12 l6">
+                  <label>Type: </label>
+                  <select class="w3-select w3-border" #idType>
+                     <option value="default" disabled selected>
+                        Choose your option
+                     </option>
+                     <option *ngFor="let code of idTypes" 
+                     [value]="code.appCode">
+                        {{ code.description }}
+                     </option>
+                  </select>
+               </div>
+               <div class="w3-col m6 s12 l6">
+                  <label>Issue Date: </label>
+                  <input class="w3-input w3-border" type="date" #issueDate>
+               </div>
+            </div>
+            <div class="w3-row-padding">
+               <div class="w3-col m6 s12 l6">
+                  <label>No.: </label>
+                  <input class="w3-input w3-border" type="text" placeholder="ID Number" #clidNumber>
+               </div>
+               <div class="w3-col m6 s12 l6">
+                  <label>Issuing Authority: </label>
+                  <input class="w3-input w3-border" type="text" placeholder="Issued By" #issuingAuthority>
+               </div>
+            </div>
+            <div class="w3-row-padding">
+               <div class="w3-col m6 s12 l6">
+                  <label>Expiration Date: </label>
+                  <input class="w3-input w3-border" type="date" #expirationDate>
+               </div>
+               <div class="w3-col m6 s12 l6" style="padding-top:24px; margin-bottom:24px;">
+                  <label>Verified: </label>
+                  <input class="w3-check" type="checkbox" #verified>
+               </div>
+            </div>
+            <div class="w3-row-padding">
+               <div class="w3-col">
+                  <label>Comments:</label>
+                  <textarea class="w3-input w3-border" #comments></textarea>
+               </div>
+            </div>
+            <div class="w3-row-padding w3-margin-top">
+               <button class="w3-button w3-right w3-border camsgo-4-color" 
+               onclick="document.getElementById('modalNewId').style.display='none'"
+               (click)="add(idType.value, issueDate.value, clidNumber.value, 
+               issuingAuthority.value, expirationDate.value, verified.checked, comments.value);
+               idType.value='default'; issueDate.value = ''; clidNumber.value = '';
+               issuingAuthority.value=''; expirationDate.value=''; verified.checked=false;
+               comments.value='';">
+                  Add
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
-

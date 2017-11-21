@@ -3,8 +3,8 @@ export class Identifier {
    idtypLookup: string;
    clidNumber: string;
    issuingAuthority: string;
-   expirationDate: Date;
-   issueDate: Date;
+   expirationDate: string;
+   issueDate: string;
    verified: boolean;
    comments: string;
 }

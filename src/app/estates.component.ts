@@ -33,7 +33,7 @@ export class EstatesComponent implements OnInit{
       this.estateToSave.id = id;
       this.estateToSave.estateNumber = estateNumber;
       this.estateToSave.courtCaseNo = courtCaseNo;
-      this.estateService.saveEstate(this.estateToSave);
+      this.estateService.saveEstate(this.estateToSave, false);
       this.getEstates();
       this.selectedEstate = null;
       this.estateToSave = null;

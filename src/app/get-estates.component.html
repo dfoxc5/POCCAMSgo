@@ -1,6 +1,18 @@
-<h2>Download an Estate</h2>
-<div>
-   <label>Estate Number:</label>
-   <input #estateNumber /> <br />
-   <button (click)="getEstate(estateNumber.value)">Get Estate</button>
+<div class="w3-container camsgo-2-color">
+   <h2 class="">Download an Estate</h2>
 </div>
+<div class="w3-container w3-padding-24">
+   <label>Estate Number:</label>
+   <input #estateNumber class="w3-input w3-border" placeholder="Estate" /> <br />
+   <button (click)="addEstate(estateNumber.value); estateNumber.value=''">Add Estate</button>
+</div>
+
+<ul class="w3-ul">
+      <li class="camsgo-2-color w3-border-0"><h4>Estates to Download</h4></li>
+      <li *ngFor="let estate of estates"
+      class="w3-display-container w3-padding-large camsgo-4-color w3-border">
+         {{estate}}
+         <button class="w3-button w3-display-right" (click)="removeEstate(estate); $event.stopPropagation()">&times;</button>
+      </li>
+      <button (click)="getEstates(); estates=[]">Download Estates</button>
+   </ul>
