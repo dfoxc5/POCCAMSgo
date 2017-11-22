@@ -1,76 +1,80 @@
 <div *ngIf="estate" class="w3-container w3-margin-bottom">
-  <h4>Names</h4>
-  <div class="w3-responsive">
-    <table class="w3-table-all w3-hoverable">
-      <tr>
-        <th>Name</th>
-        <th class="w3-hide-small">Suffix</th>
-        <th class="w3-hide-small">Type</th>
-      </tr>
-      <tr *ngFor="let name of estate.names" onclick="document.getElementById('nameModal').style.display='block'"
-          (mousedown)="setupModal(name)">
-        <td>{{ name.lastName }}, {{ name.firstName }} {{ name.middleName }}</td>
-        <td class="w3-hide-small">{{ getSffxDescription(name.sffxLookup) }}</td>
-        <td class="w3-hide-small">{{getNameTypeDescription(name.nametypLookup)}}</td>
-      </tr>
-    </table>
-  </div>
-  <div id="nameModal" class="w3-modal" *ngIf="selectedName">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-      <header class="w3-container camsgo-2-color">
-            <span onclick="document.getElementById('nameModal').style.display='none'"
-                  class="w3-button w3-display-topright">&times;</span>
-        <h2>Name Details</h2>
-      </header>
-      <div class="w3-container w3-padding-16">
-        <div class="w3-row-padding">
-          <div class="w3-col m6 s12 l6">
-            <label>Type: </label>
-            <select disabled class="w3-select w3-border" [(ngModel)]="selectedName.nametypLookup">
-              <option value="default" disabled [selected]="selectedName === null">
-                Choose your option
-              </option>
-              <option *ngFor="let code of nameTypes"
-                      [ngValue]="code.appCode"
-                      [selected]="code.appCode === selectedName.nametypLookup">
-                {{ code.description }}
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div class="w3-row-padding">
-          <div class="w3-col m6 s12 l6">
-            <label>Last Name: </label>
-            <input class="w3-input w3-border" type="text" disabled placeholder="" [(ngModel)]="selectedName.lastName">
-          </div>
-          <div class="w3-col m6 s12 l6">
-            <label>First Name: </label>
-            <input class="w3-input w3-border" type="text" disabled placeholder="" [(ngModel)]="selectedName.firstName">
-          </div>
-        </div>
-
-        <div class="w3-row-padding">
-          <div class="w3-col m6 s12 l6">
-            <label>Middle Name: </label>
-            <input class="w3-input w3-border" type="text" disabled placeholder="" [(ngModel)]="selectedName.middleName">
-          </div>
-          <div class="w3-col m6 s12 l6">
-            <label>Suffix: </label>
-            <input class="w3-input w3-border" type="text" disabled placeholder="" [(ngModel)]="selectedName.sffxLookup">
-          </div>
-        </div>
-
-        <div class="w3-row-padding">
-          <div class="w3-col m6 s12 l6">
-            <label>Comments: </label>
-            <textarea class="w3-input w3-border" type="text" disabled placeholder=""
-                      [(ngModel)]="selectedName.comments">
-            </textarea>
-          </div>
-        </div>
-        <p></p>
+   <h4>Names</h4>
+   <div class="w3-responsive">
+      <table class="w3-table-all w3-hoverable">
+         <tr class="w3-grey">
+            <th>Name</th>
+            <th class="w3-hide-small">Suffix</th>
+            <th>Type</th>
+         </tr>
+         <tr *ngFor="let name of estate.names" 
+         onclick="document.getElementById('nameModal').style.display='block'"
+         (mousedown)="setupModal(name)">
+            <td>{{ name.lastName }}, {{ name.firstName }} {{ name.middleName }}</td>
+            <td class="w3-hide-small">{{ getSffxDescription(name.sffxLookup) }}</td>
+            <td>{{ getNameTypeDescription(name.nametypLookup) }}</td>
+         </tr>
+      </table>
+   </div>
+   <div id="nameModal" class="w3-modal" *ngIf="selectedName">
+      <div class="w3-modal-content w3-animate-top w3-card-4">
+         <header class="w3-container camsgo-2-color">
+               <span onclick="document.getElementById('nameModal').style.display='none'"
+                     class="w3-button w3-display-topright">&times;</span>
+         <h2>Name Details</h2>
+         </header>
+         <div class="w3-container w3-padding-16">
+         <div class="w3-row-padding">
+            <div class="w3-col m6 s12 l6">
+               <label>Type: </label>
+               <select disabled class="w3-select w3-border w3-light-grey" 
+               [(ngModel)]="selectedName.nametypLookup"
+               style="color:#545454">
+               <option value="default" disabled [selected]="selectedName === null">
+                  Choose your option
+               </option>
+               <option *ngFor="let code of nameTypes"
+                        [ngValue]="code.appCode"
+                        [selected]="code.appCode === selectedName.nametypLookup">
+                  {{ code.description }}
+               </option>
+               </select>
+            </div>
+         </div>
+   
+         <div class="w3-row-padding">
+            <div class="w3-col m6 s12 l6">
+               <label>Last Name: </label>
+               <input class="w3-input w3-border" type="text" disabled placeholder="" [(ngModel)]="selectedName.lastName">
+            </div>
+            <div class="w3-col m6 s12 l6">
+               <label>First Name: </label>
+               <input class="w3-input w3-border" type="text" disabled placeholder="" [(ngModel)]="selectedName.firstName">
+            </div>
+         </div>
+   
+         <div class="w3-row-padding">
+            <div class="w3-col m6 s12 l6">
+               <label>Middle Name: </label>
+               <input class="w3-input w3-border" type="text" disabled placeholder="" [(ngModel)]="selectedName.middleName">
+            </div>
+            <div class="w3-col m6 s12 l6">
+               <label>Suffix: </label>
+               <input class="w3-input w3-border" type="text" disabled placeholder="" [(ngModel)]="selectedName.sffxLookup">
+            </div>
+         </div>
+   
+         <div class="w3-row-padding">
+            <div class="w3-col m6 s12 l6">
+               <label>Comments: </label>
+               <textarea class="w3-input w3-border" type="text" disabled placeholder=""
+                        [(ngModel)]="selectedName.comments">
+               </textarea>
+            </div>
+         </div>
+         <p></p>
+         </div>
       </div>
-    </div>
-  </div>
-</div>
+   </div>
+   </div>
+    

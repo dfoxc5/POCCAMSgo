@@ -17,7 +17,7 @@ const httpOptions = {
 @Injectable()
 export class EstateService {
    private session: Estate;
-   private estateUrl = 'http://camsgosvr1:8080/camsgo/rest/cases/';
+   private estateUrl = 'http://camsgosvr1:7001/camsgo/case/';
    private proxyurl = 'https://cors-anywhere.herokuapp.com/';
    private url = 'https://example.com'; // site that doesn’t send Access-Control-*
    private pulledEstateObs: Observable<Estate>;
@@ -81,6 +81,17 @@ export class EstateService {
             }
          }
       );
+      this.http.get<Lookups[]>('http://camsgosvr1:7001/camsgo/case/shortlookups/SUFFIX')
+      .subscribe(
+         pulledLookups => { this.saveLookups(pulledLookups); },
+         (err: HttpErrorResponse) => {
+            if (err.error instanceof Error) {
+               console.log('Client-side Error occured');
+            } else {
+               console.log('Server-side Error occured');
+            }
+         }
+      );
    }
 
    postEstateToHttp(estate: Estate): void {
@@ -121,7 +132,8 @@ export class EstateService {
          legalStatusLookup: estate.legalStatusLookup,
          interfaceSent: estate.interfaceSent,
          names: estate.names,
-         identifiers: estate.identifiers
+         identifiers: estate.identifiers,
+         casenotes: estate.casenotes
       });
    }
    update(estate: Estate): Promise<number> {
@@ -135,7 +147,8 @@ export class EstateService {
          legalStatusLookup: estate.legalStatusLookup,
          interfaceSent: estate.interfaceSent,
          names: estate.names,
-         identifiers: estate.identifiers
+         identifiers: estate.identifiers,
+         casenotes: estate.casenotes
       });
    }
    delete(estate: Estate): void {

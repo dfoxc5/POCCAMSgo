@@ -20,6 +20,8 @@ export class IdentifiersComponent implements OnInit {
    selectedId: Identifier;
    date: Date;
    idTypes: Lookups[];
+   newId = new Identifier;
+   idsToRemove = [];
    constructor(
       private estateService: EstateService,
       private route: ActivatedRoute,
@@ -27,9 +29,7 @@ export class IdentifiersComponent implements OnInit {
       private datepipe: DatePipe,
    ) { }
    ngOnInit(): void {
-      // this.estateID = this.route.parent.snapshot.paramMap.get('id');
       this.estate = this.estateService.getSession();
-      // this.estateService.getEstate(+this.estateID).then(estate => this.estate = estate);
       this.estateService.getLookups('IDTYP').then(idTypes => this.idTypes = idTypes);
    }
 
@@ -60,6 +60,62 @@ export class IdentifiersComponent implements OnInit {
 
    findIndexToUpdate(IDtoSave) {
       return IDtoSave.id === this;
+   }
+
+   add(idType: string, issueDate: string, clidNum: string,
+      issAuth: string, expDate: string, verified: boolean,
+      comments: string): void {
+      const lowestId = this.findLowestId(this.estate.identifiers);
+      this.newId.id = lowestId;
+      this.newId.idtypLookup = idType;
+      this.newId.issueDate = issueDate;
+      this.newId.clidNumber = clidNum;
+      this.newId.issuingAuthority = issAuth;
+      this.newId.expirationDate = expDate;
+      this.newId.verified = verified;
+      this.newId.comments = comments;
+      this.newId.enteredByUser = true;
+      this.estate.identifiers.push(this.newId);
+      this.estateService.update(this.estate);
+   }
+
+   findLowestId(identifiers: Identifier[]): number {
+      let lowId = 0;
+      for (const id of identifiers) {
+         if (+id.id <= lowId) {
+            lowId = +id.id - 1;
+         }
+      }
+      return lowId;
+   }
+
+   checkbox(id: number): void {
+      let add = true;
+      if (this.idsToRemove.length > 0) {
+         for (const toRemove of this.idsToRemove) {
+            if (id === +toRemove) {
+               const index = this.idsToRemove.findIndex(thisId => +thisId === id);
+               this.idsToRemove.splice(index, 1);
+               add = false;
+            }
+         }
+      }
+      if (add) {
+         this.idsToRemove.push(id);
+      }
+      console.log(this.idsToRemove);
+   }
+
+   removeIds(): void {
+      console.log(this.estate.identifiers);
+      if (this.idsToRemove.length > 0) {
+         for (const toRemove of this.idsToRemove) {
+            const index = this.estate.identifiers.findIndex(identifier => +identifier.id === toRemove);
+            this.estate.identifiers.splice(index, 1);
+            console.log(this.estate.identifiers);
+            this.estateService.update(this.estate);
+         }
+      }
    }
 
 }

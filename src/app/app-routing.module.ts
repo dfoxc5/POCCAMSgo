@@ -6,6 +6,7 @@ import { GetEstatesComponent } from './get-estates.component';
 import { IdentifiersComponent } from './estate-detail/identifiers/identifiers.component';
 import { NamesComponent } from './estate-detail/names/names.component';
 import { CasenotesComponent } from './estate-detail/casenotes/casenotes.component';
+import { VisitsComponent } from './estate-detail/visits/visits.component';
 
 const routes: Routes = [
    { path: '', component: EstatesComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
         { path: '', component: NamesComponent },
         { path: 'names', component: NamesComponent },
         { path: 'ids', component: IdentifiersComponent },
-        { path: 'casenotes', component: CasenotesComponent }
+        { path: 'casenotes', component: CasenotesComponent },
+        { path: 'visits', component: VisitsComponent }
      ]},
    { path: 'getEstate', component: GetEstatesComponent }
 ];

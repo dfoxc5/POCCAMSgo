@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 @Component({
    selector: 'app-get-estates',
    templateUrl: './get-estates.component.html',
-   styleUrls: [ './get-estates.component.css' ],
 })
 
 export class GetEstatesComponent{
@@ -22,7 +21,7 @@ export class GetEstatesComponent{
    }
 
    getEstates(): void {
-      for (let estate of this.estates) {
+      for (const estate of this.estates) {
          this.estateService.getEstateFromHttp(estate);
       }
       this.estateService.getLookupsFromHttp();

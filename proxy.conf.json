@@ -1,0 +1,4 @@
+{
+   "/camsgo/*":
+   { "target": "http://camsgosvr1:7001", "secure": false, "changeOrigin": true, "logLevel": "debug" }
+}

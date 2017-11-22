@@ -7,4 +7,5 @@ export class Identifier {
    issueDate: string;
    verified: boolean;
    comments: string;
+   enteredByUser: boolean;
 }

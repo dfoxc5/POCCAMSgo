@@ -1,5 +1,6 @@
 import { Name } from './name';
 import { Identifier } from './identifiers';
+import { Casenotes } from './casenotes';
 
 export class Estate {
    id: number;
@@ -12,4 +13,5 @@ export class Estate {
    casestatLookup: string;
    names: Name[];
    identifiers: Identifier[];
+   casenotes: Casenotes[];
 }
